@@ -1,6 +1,11 @@
-var time = 3211
+
+
 fun main() {
-    agoToText(time)
+    print("Введите значение в секундах: ")
+    val time = readLine()?.toInt()
+    if (time != null) {
+        agoToText(time)
+    }
 }
 
 fun agoToText(time: Int) {
@@ -28,19 +33,15 @@ fun stringMinutes(time: Int): String {
 
 fun stringHours(time: Int): String {
     return when (true) {
-        (time % 3_600 == 1 && time % 3_600 != 11) -> "Был(а) " + time / 3_600 + " час назад"
-        ((time % 3_600 == 2) || (time % 3_600 == 3) || (time % 3_600 == 4)) -> "Был(а) " + time / 3600 + " часа назад"
-
+        (time / 3_600 % 10 == 1 && time / 3_600 != 11 ) -> "Был(а) " + time / 3_600 + " час назад"
+        (time / 3600 / 10 != 1
+                && (time / 3_600 % 10 == 2)
+                || (time / 3_600 % 10 == 3)
+                || (time / 3_600 % 10 == 4)) -> "Был(а) " + time / 3600 + " часа назад"
         else -> "Был(а) " + time / 3_600 + " часов назад"
     }
 }
 
-
-
-//(time /60 == 1 && (time / 60) % 60 == 1) -> "Был(а) " + time / 60 + " минуту назад"
-//((time % 60 == 0) || (time / 60 % 60 == 2) || (time / 60 % 60 == 3) || (time / 60 % 60 == 4)) -> "Был(а) " + time / 60 + " минуты назад"
-//
-//else -> "Был(а) " + time / 60 + " минут назад"
 
 
 
