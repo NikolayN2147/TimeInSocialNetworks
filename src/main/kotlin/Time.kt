@@ -4,18 +4,18 @@ fun main() {
     print("Введите значение в секундах: ")
     val time = readLine()?.toInt()
     if (time != null) {
-        agoToText(time)
+        println(agoToText(time))
     }
 }
 
-fun agoToText(time: Int) {
+fun agoToText(time: Int):String {
     return when (true) {
-        (time <= 60) -> println("Был(а) только что")
-        (time in 61..3_599) -> println(stringMinutes(time))
-        (time in 3_600..86_400) -> println(stringHours(time))
-        (time in 86_401..172_800) -> println("Был(а) сегодня")
-        (time in 172_801..216_000) -> println("Был(а) вчера")
-        else -> println("Был(а) давно")
+        (time <= 60) -> "Был(а) только что"
+        (time in 61..3_599) -> stringMinutes(time)
+        (time in 3_600..86_400) -> stringHours(time)
+        (time in 86_401..172_800) -> "Был(а) сегодня"
+        (time in 172_801..216_000) -> "Был(а) вчера"
+        else -> "Был(а) давно"
     }
 }
 
